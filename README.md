@@ -22,7 +22,7 @@ Action :
 -----
 
 
-1. Modify test.jce.technical.configuration.CacheConfiguration -> comment the bean cacheManager block :     
+1. Modify test.jce.technical.configuration.CacheConfiguration -> comment the bean cacheManager block    
 2. mvn clean install (required as there are inter-modules dependencies)
 3. mvn -f ./TestApiWar/pom.xml spring-boot:run
 
@@ -44,3 +44,14 @@ Fail on startup, ending with
 And with a lot of looping 
 
     Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [javax.sql.DataSource]: Factory method 'dataSource' threw exception; nested exception is java.lang.NullPointerException; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'dataSource' defined in class path resource [org/springframework/boot/autoconfigure/jdbc/DataSourceAutoConfiguration$NonEmbeddedConfiguration.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [javax.sql.DataSource]: Factory method 'dataSource' threw exception; nested exception is java.lang.NullPointerException; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'sqlSessionFactory' defined in class path resource [test/jce/persistence/configuration/DatabaseConfig.class]: Unsatisfied dependency expressed through constructor argument with index 0 of type [javax.sql.DataSource]: : Error creating bean with name 'dataSource' defined in class path resource [org/springframework/boot/autoconfigure/jdbc/DataSourceAutoConfiguration$NonEmbeddedConfiguration.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [javax.sql.DataSource]: Factory method 'dataSource' threw exception; nested exception is java.lang.NullPointerException; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'dataSource' defined in class path resource [org/springframework/boot/autoconfigure/jdbc/DataSourceAutoConfiguration$NonEmbeddedConfiguration.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [javax.sql.DataSource]: Factory method 'dataSource' threw exception; nested exception is java.lang.NullPointerException
+    
+Action :
+-----
+
+1. Modify test.jce.TestApiApplication -> comment the @EnableCaching annotation     
+2. mvn clean install (required as there are inter-modules dependencies)
+3. mvn -f ./TestApiWar/pom.xml spring-boot:run
+
+**Expected :**
+
+Should boot properly. No error and http://localhost:8080/health down because the postgresql database is configured with crappy values... but the server is up and running.
