@@ -20,7 +20,6 @@ import java.util.Properties;
  */
 @Configuration
 @MapperScan(basePackages = "test.jce.persistence")
-@AutoConfigureAfter(DataSourceAutoConfiguration.class)
 public class DatabaseConfig {
 
 

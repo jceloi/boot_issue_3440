@@ -1,8 +1,6 @@
 package test.jce.technical.configuration;
 
-import org.springframework.cache.CacheManager;
 import org.springframework.cache.concurrent.ConcurrentMapCacheManager;
-import org.springframework.cache.guava.GuavaCacheManager;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -14,12 +12,11 @@ public class CacheConfiguration {
 
 
 
-    //TODO: Uncomment to start the application
-    /*
+    //TODO: Comment that block to crash the startup
     @Bean
     public ConcurrentMapCacheManager cacheManager() {
         return new ConcurrentMapCacheManager("test");
-    }*/
+    }
 
 
 }
